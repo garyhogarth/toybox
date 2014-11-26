@@ -2,9 +2,24 @@
 
 {% block content %}
     Coin counter
-    <form action="{{ path('aoceu.toybox.coincounter.index') }}" method="post" accept-charset="UTF-8">
+    <form id='coincounter' action="{{ url('aoceu.toybox.coincounter.index') }}" method="post" accept-charset="UTF-8">
         {{ form_widget(form) }}
         {{ form_errors(form.amount) }}
         {{ form_errors(form) }}
     </form>
+    <div id="result"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#coincounter').keyup(function( event ) {
+            event.preventDefault();
+            $.post($('#coincounter').attr('action'), $('#coincounter').serialize(), function( data ) {
+                $( "#result" ).html( data );
+            });
+        });
+        $('#coincounter').submit(function( event ) {
+            event.preventDefault();
+        });
+    </script>
 {% endblock %}

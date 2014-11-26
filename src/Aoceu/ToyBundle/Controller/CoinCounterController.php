@@ -24,7 +24,7 @@ class CoinCounterController extends Controller
         $data = array('amount' => 0);
 
         $form = $this->createFormBuilder($data)
-            ->add('amount', 'text')
+            ->add('amount', 'text',array('attr' => array("autocomplete" => "off")))
             ->getForm();
 
         $form->handleRequest($request);
@@ -34,7 +34,15 @@ class CoinCounterController extends Controller
 
             $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($formData['amount']);
 
-            return $this->render('@AoceuToy/CoinCounter/results.html.twig',array('amount' => $formData['amount'], 'coinCounts' => $coinCounts));
+            $viewData = array('amount' => $this->get('aoceu.toybox.coincounter')->parseInput($formData['amount'])/100, 'coinCounts' => $coinCounts);
+
+            if ($request->isXmlHttpRequest()) {
+                $template = 'results.content.html.twig';
+            } else {
+                $template = 'results.html.twig';
+            }
+
+            return $this->render('@AoceuToy/CoinCounter/'.$template,$viewData);
         }
 
         return array(
