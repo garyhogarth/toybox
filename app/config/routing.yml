@@ -1,0 +1,5 @@
+aoceu_toy:
+    resource: "@AoceuToyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
