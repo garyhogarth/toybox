@@ -1,0 +1,13 @@
+<h1>Lowest number of coins needed to make &pound;{{ amount }}</h1>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-bordered">
+            {% for coinName, coinCount in coinCounts %}
+                <tr{% if coinCount > 0 %}  class="warning"{% endif %}>
+                    <th class="col-md-2 text-center">{{ coinName }}</th>
+                    <td>{{ coinCount }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

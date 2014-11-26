@@ -19,18 +19,38 @@ class CoinCounterController extends Controller
      * @Route("/", name="aoceu.toybox.coincounter.index")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return array();
+        $data = array('amount' => 0);
+
+        $form = $this->createFormBuilder($data)
+            ->add('amount', 'money',array('currency' => 'GBP'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $formData = $form->getData();
+
+            $pennies = $formData['amount']*100;
+
+            $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($pennies);
+
+            return $this->render('@AoceuToy/CoinCounter/results.html.twig',array('amount' => $formData['amount'], 'coinCounts' => $coinCounts));
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
     }
 
     /**
-     * @Route("/{value}", name="aoceu.toybox.coincounter.results")
+     * @Route("/{amount}", name="aoceu.toybox.coincounter.results")
      * @Template()
      */
-    public function resultsAction($value)
+    public function resultsAction($amount)
     {
-        $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($value);
+        $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($amount);
         return array();
     }
 }
