@@ -50,14 +50,14 @@ class CoinCounter
         // Regex could achieve the same however for clarity and for future devs working on this code I have not
 
 
-        if (preg_match('#^£#', $input) == 1) {
-            $input = ltrim($input,'£');
-            $inPounds = true;
-        }
-        
-        if (substr($input,0,-1) == 'p') {
+        if (preg_match('#p$#', $input) == 1) {
             $input = rtrim($input,'p');
             $inPounds = false;
+        }
+
+        if ((preg_match('#^£#', $input) == 1) || strpos($input,'.') ) {
+            $input = ltrim($input,'£');
+            $inPounds = true;
         }
 
         // Check to see if we have to clean
@@ -74,6 +74,8 @@ class CoinCounter
             $input = $input*100;
         }
 
+        // Now lets handle rounding
+        $input = round($input);
 
         return $input;
     }
