@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="default_index")
+     * @Route("/", name="aoceu.toybox.home")
      * @Template()
      */
     public function indexAction()
