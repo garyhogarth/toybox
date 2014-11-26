@@ -23,4 +23,13 @@ class CoinCounterController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/{value}", name="aoceu.toybox.coincounter.results")
+     * @Template()
+     */
+    public function resultsAction($value)
+    {
+        return array();
+    }
 }
