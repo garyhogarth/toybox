@@ -24,7 +24,7 @@ class CoinCounterController extends Controller
         $data = array('amount' => 0);
 
         $form = $this->createFormBuilder($data)
-            ->add('amount', 'money',array('currency' => 'GBP'))
+            ->add('amount', 'text')
             ->getForm();
 
         $form->handleRequest($request);
@@ -32,9 +32,7 @@ class CoinCounterController extends Controller
         if ($form->isValid()) {
             $formData = $form->getData();
 
-            $pennies = $formData['amount']*100;
-
-            $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($pennies);
+            $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($formData['amount']);
 
             return $this->render('@AoceuToy/CoinCounter/results.html.twig',array('amount' => $formData['amount'], 'coinCounts' => $coinCounts));
         }

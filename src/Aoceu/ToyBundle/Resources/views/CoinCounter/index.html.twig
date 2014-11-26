@@ -2,5 +2,9 @@
 
 {% block content %}
     Coin counter
-    {{ form(form) }}
+    <form action="{{ path('aoceu.toybox.coincounter.index') }}" method="post" accept-charset="UTF-8">
+        {{ form_widget(form) }}
+        {{ form_errors(form.amount) }}
+        {{ form_errors(form) }}
+    </form>
 {% endblock %}
