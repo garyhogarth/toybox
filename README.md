@@ -16,3 +16,7 @@ In a production app I would have used migrations however for something this smal
     php app/console doctrine:schema:create
 
     php app/console doctrine:fixtures:load
+
+Tests can be run using the following command.
+
+    php phpunit.phar -c app
