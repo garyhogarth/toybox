@@ -30,6 +30,7 @@ class CoinCounterController extends Controller
      */
     public function resultsAction($value)
     {
+        $coinCounts = $this->get('aoceu.toybox.coincounter')->lowestNumberOfCoins($value);
         return array();
     }
 }
