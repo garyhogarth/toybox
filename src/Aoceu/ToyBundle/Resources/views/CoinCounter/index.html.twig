@@ -1,7 +1,7 @@
 {% extends '@AoceuToy/layout.main.html.twig' %}
 
 {% block content %}
-    Coin counter
+    <h1>Coin counter</h1>
     <form id='coincounter' action="{{ url('aoceu.toybox.coincounter.index') }}" method="post" accept-charset="UTF-8">
         {{ form_widget(form) }}
         {{ form_errors(form.amount) }}
