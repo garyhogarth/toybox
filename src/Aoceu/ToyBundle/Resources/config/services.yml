@@ -2,3 +2,6 @@ services:
 #    aoceu_toy.example:
 #        class: Aoceu\ToyBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    aoceu.toybox.coincounter:
+        class: Aoceu\ToyBundle\Services\CoinCounter
+        arguments: [@doctrine.orm.entity_manager]
