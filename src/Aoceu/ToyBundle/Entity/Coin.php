@@ -35,13 +35,6 @@ class Coin
      */
     private $value;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="currency", type="integer")
-     */
-    private $currency;
-
 
     /**
      * Get id
@@ -97,28 +90,5 @@ class Coin
     public function getValue()
     {
         return $this->value;
-    }
-
-    /**
-     * Set currency
-     *
-     * @param integer $currency
-     * @return Coin
-     */
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Get currency
-     *
-     * @return integer 
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
     }
 }
