@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class CoinCounterController
  * @package Aoceu\ToyBundle\Controller
- * @Route("/toys/coincounter/")
+ * @Route("/toys/coin-counter")
  */
 class CoinCounterController extends Controller
 {
